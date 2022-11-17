@@ -12,7 +12,7 @@ class CommentComponent < ViewComponent::Base
   end
 
   def comment_path
-    group_post_comment_replies_path(
+    new_group_post_comment_reply_path(
       @comment.post.group, @comment.post, @comment, Comment.new
     )
   end

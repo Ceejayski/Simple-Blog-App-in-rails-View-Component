@@ -1,9 +1,9 @@
-class Groups::Posts::Comments::ReplyController < ApplicationController
+class Groups::Posts::Comments::RepliesController < ApplicationController
   before_action :set_groups_posts
 
   def new
-    @reply = Reply.new
-    authorize @reply
+    @replies = @replies.build
+    # authorize @reply
   end
 
   def create

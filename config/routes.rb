@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
     resources :posts, module: 'groups' do
       resources :comments, module: 'posts' do
-        resources :replies, module: 'comments', only: %i[create]
+        resources :replies, module: 'comments', only: %i[create new]
       end
     end
   end
