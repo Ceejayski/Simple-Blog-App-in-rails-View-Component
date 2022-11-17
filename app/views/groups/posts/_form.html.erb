@@ -1,10 +1,10 @@
-<%= form_with(model: record, class: "contents") do |form| %>
-  <% if post.errors.any? %>
+<%= form_with(model: group[1], url: group, class: "contents") do |form| %>
+  <% if group[1].errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(record[1].errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(group[1].errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-        <% record[1].errors.each do |error| %>
+        <% group[1].errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

@@ -13,11 +13,13 @@ class SinglePostComponent < ViewComponent::Base
   end
 
   def post_button
+    links = []
     if @post.author == @current_user
-      content_tag :div, class: 'daisy-btn-group' do
-        link_to 'Delete', post_path(@post), data: { "turbo-method": :delete }, class: 'daisy-btn btn-danger'
-        link_to 'Edit', edit_post_path(@post), class: 'daisy-btn btn-primary'
-      end
+      links << (link_to 'Delete', url_for([@post.group, @post]), class: 'daisy-btn daisy-btn-danger',
+                                                                 data: { confirm: 'Are you sure?', "turbo-method": :delete })
+      links << (link_to 'Edit', edit_group_post_path(@post.group, @post), class: 'daisy-btn daisy-btn-primary',
+                                                                          data: { turbo_frame: 'modal' })
     end
+    links
   end
 end

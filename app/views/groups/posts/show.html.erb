@@ -1,28 +1,22 @@
 
 <%= turbo_frame_tag "posts" do %>
-<%= turbo_frame_tag "comments" do %>
+  <%= turbo_frame_tag "comments" do %>
 
-  <div class="w-full">
-    <div class="text-gray-700 w-full pb-1">
-      <%= link_to post.title, group_post_path(@group.id, post.id), class: "ftext-2xl font-normal leading-normal mt-0 mb-2 text-pink-800"%>
+    <div class="w-full">
+      <div id="<%= dom_id @post %>" class="mt-4">
+        <h1 class="font-bold text-2xl"><%= @post.title %></h1>
+        <p class="text-gray-400">
+          <%= @post.description %>
+        </p>
     </div>
-    <div class="font-light leading-normal pb-2">
-      <div>
-        <%= post.content %>
-      </div>
-      <% if policy(post).edit? %>
-        <span class="text-lg font-bold"> <%= link_to 'Edit', edit_group_post_path(@group, post)%></span> |
-        <span class="text-lg font-bold "> <%= link_to "Delete", group_post_path(@group, post), data: { "turbo_method": :delete } %></span>
-      <% end %> |<span class="text-lg font-bold">Created by <%= creator_name(post)%></span>
+    <div>
+
+      <p class="font-semiboldmt-5">
+        Updated about <%= time_tag(@post.updated_at, 'data-local': 'time-ago') %>
+      </p>
+      <%= render CommentButtonComponent.new record: @post, current_user: current_user %>
     </div>
-  </div>
-  <%= turbo_frame_tag "post_comments" do %>
-    <div class='pt-6'>
-        Comments
-        <%= render(CommentComponent.with_collection(@comments, current_user: current_user)) %>
-    </div>
+    <%= render CommentComponent.with_collection @post.comments, current_user: current_user %>
   <% end %>
-  <h2>Add New Comment</h2>
-  <%= render "comments/form" %>
- <% end %>
 <% end %>
+

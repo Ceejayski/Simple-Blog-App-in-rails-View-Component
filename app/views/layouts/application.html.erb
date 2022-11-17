@@ -12,6 +12,8 @@
   </head>
 
   <body>
+    <%= turbo_frame_tag "modal" %>
+
     <%= render NavbarComponent.new user: current_user %>
     <div class="fixed inset-0 px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
       <div class="flex flex-col items-end justify-center">
@@ -21,7 +23,6 @@
       </div>
     </div>
     <main class="container mx-auto mt-28 px-5">
-      <%= turbo_frame_tag "modal" %>
       <%= yield %>
     </main>
   </body>

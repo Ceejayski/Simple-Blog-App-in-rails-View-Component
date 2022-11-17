@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     resources :members, only: %i[create], module: 'groups' do
       delete :destroy, on: :collection
     end
-    resources :posts, module: 'groups'
+    resources :posts, module: 'groups' do
+      resources :comments, module: 'posts' do
+        resources :replies, module: 'comments', only: %i[create]
+      end
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

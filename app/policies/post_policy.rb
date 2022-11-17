@@ -1,21 +1,10 @@
 class PostPolicy < ApplicationPolicy
-  class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
-  end
-
-  def index?
-    user_member?
-  end
-
   def show?
-    user_member?
+    user_member? or record.group.creator == user
   end
 
   def create?
-    record.author == user or record.group.creator == user
+    user_member? or record.group.creator == user
   end
 
   def update?
