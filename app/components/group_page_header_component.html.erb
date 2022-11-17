@@ -1,0 +1,9 @@
+<div class="flex p-4">
+  <h1 class="font-bold text-4xl"><%= @group.title %></h1>
+  <div class="ml-auto">
+    <% edit_group_link.each do |link| %>
+      <%= link %>
+    <% end %>
+  </div>
+</div>
+<hr/>

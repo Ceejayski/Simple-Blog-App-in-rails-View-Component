@@ -1,0 +1,23 @@
+<%= link_to  group_path(@group) do %>
+  <div class="p-4 w-full">
+    <div class="flex justify-between w-full items-center">
+      <div>
+        <h1 class="font-bold text-2xl"> <%= @group.title %> </h1>
+        <p class="text-sm font-light"> created_by: <%= created_by%> </p>
+        <div class="flex mt-3">
+        <p class="text-base font-medium mr-3"> <%= pluralize(@group.members.size, 'Member')  %> </p>
+        <p class="text-base font-medium mr-3"> <%= pluralize(@group.posts.size, 'Post')  %> </p>
+        <p class="text-base font-medium mr-3"> Last Updated on <%= time_tag @group.updated_at, 'data-local': 'time-ago' %> </p>
+        </div>
+      </div>
+
+      <div>
+        <%= group_button %>
+      </div>
+    </div>
+
+  </div>
+  <hr/>
+
+<% end %>
+

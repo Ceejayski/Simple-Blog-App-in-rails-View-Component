@@ -1,0 +1,6 @@
+<%= turbo_frame_tag 'group_list' do%>
+  <div>
+    <%= render GroupPageHeaderComponent.new group: @group, current_user: current_user  %>
+    <%= render SinglePostComponent.with_collection(@posts, current_user: current_user) %>
+  </div>
+<% end %>

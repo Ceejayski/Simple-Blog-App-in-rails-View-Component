@@ -5,6 +5,8 @@ module.exports = {
     './public/*.html',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
+    './app/views/**/*',
+    './app/components/**/*',
     './app/views/**/*.{erb,haml,html,slim}'
   ],
   theme: {
@@ -18,5 +20,9 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
-  ]
+    require("daisyui")
+  ],
+  daisyui: {
+    prefix: 'daisy-',
+  },
 }

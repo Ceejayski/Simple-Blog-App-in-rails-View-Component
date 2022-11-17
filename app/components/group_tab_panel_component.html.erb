@@ -1,0 +1,12 @@
+<ul class="flex flex-wrap border-b border-gray-200 my-4">
+  <% @queries.each do |tab| %>
+    <% tab_class = tab[:query] == @current_query ? 'inline-block bg-gray-100 text-blue-600 rounded-t-lg p-4 text-sm font-medium text-center active' : 'inline-block text-gray-500 hover:text-gray-600 hover:bg-gray-50 rounded-t-lg p-4 text-sm font-medium text-center'  %>
+    <li class="mr-2">
+      <%= link_to  tab[:label], root_path(query: tab[:query]), class: tab_class %>
+    </li>
+  <% end %>
+
+  <li class="ml-auto">
+    <%= link_to  'New', new_group_path, data: { turbo_frame: 'modal' }, class: 'inline-block text-gray-500 hover:text-gray-600 hover:bg-gray-50 rounded-t-lg p-4 text-sm font-medium text-center' %>
+  </li>
+</ul>
