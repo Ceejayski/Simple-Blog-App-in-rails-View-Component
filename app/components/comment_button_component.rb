@@ -7,7 +7,7 @@ class CommentButtonComponent < ViewComponent::Base
   end
 
   def comment_count
-    @record.model_name.name == 'Post' ? @record.comments.count : @record.replies.count
+    @record.model_name.name == 'Post' ? @record.direct_comments.count : @record.replies.count
   end
 
   def comment_path

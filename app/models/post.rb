@@ -32,4 +32,10 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   # scopes
   scope :most_recent, -> { order(updated_at: :desc) }
+
+  # object methods
+
+  def direct_comments
+    comments.where(parent_comment_id: nil)
+  end
 end

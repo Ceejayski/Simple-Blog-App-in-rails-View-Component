@@ -7,9 +7,10 @@ class Groups::Posts::Comments::RepliesController < ApplicationController
   end
 
   def create
-    @reply = @replies.build(reply_params)
-    @reply.author = current_user
-    authorize @reply
+    @reply = @replies.build(body: params[:body])
+    @reply.user = current_user
+    @reply.post = @post
+    # authorize @reply
     respond_to do |format|
       if @reply.save
         format.html { redirect_to group_post_path(@group, @post), notice: 'Reply was successfully created.' }
@@ -30,9 +31,5 @@ class Groups::Posts::Comments::RepliesController < ApplicationController
     @comments = @post.comments
     @comment = @comments.find(params[:comment_id])
     @replies = @comment.replies
-  end
-
-  def reply_params
-    params.require(:reply).permit(:content)
   end
 end

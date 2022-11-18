@@ -1,11 +1,11 @@
 
-<%= form_with(model: group[2], url: group, class: "contents") do |form| %>
+<%= form_with( url: group_post_comment_replies_path(*group), class: "contents") do |form| %>
   <% if group[2].errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(group[2].errors.count, "error") %> prohibited this group from being saved:</h2>
+      <h2><%= pluralize(group[3].errors.count, "error") %> prohibited this group from being saved:</h2>
 
       <ul>
-        <% group[2].errors.each do |error| %>
+        <% group[3].errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

@@ -30,9 +30,11 @@ class Groups::Posts::CommentsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @comment = @comments.find(params[:id])
+  end
 
-  def udpate
+  def update
     @comment = @comments.find(params[:id])
     authorize @comment
     @comment.update(comment_params)

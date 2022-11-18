@@ -17,13 +17,13 @@ class CommentComponent < ViewComponent::Base
     )
   end
 
-  def comment_links
+  def comment_links(comment)
     comment_links = []
-    if @comment.post.group.creator == @current_user || @comment.user == @current_user
+    if comment.post.group.creator == @current_user || comment.user == @current_user
       comment_links = [
-        link_to('Edit', edit_group_post_comment_path(@comment.post.group, @comment.post, @comment, @comment),
+        link_to('Edit', edit_group_post_comment_path(comment.post.group, comment.post, comment, comment),
                 data: { turbo_frame: 'modal' }),
-        link_to('Delete', group_post_comment_path(@comment.post.group, @comment.post, @comment),
+        link_to('Delete', group_post_comment_path(comment.post.group, comment.post, comment),
                 data: { confirm: 'Are you sure?', turbo_method: 'delete' })
       ]
     end
