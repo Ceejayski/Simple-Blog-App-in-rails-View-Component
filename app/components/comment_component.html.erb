@@ -1,45 +1,7 @@
-<div class="card bg-base-300 w-max-[600px] mx-auto shadow-xl p-3 my-4">
-  <div class="card-body">
-    <h2 class="card-title"> <%= @comment.user.email %> </h2>
-    <p><%= @comment.body %></p>
-    <div class="card-actions justify-end">
-
-    <% if @comment.replies %>
-
-      <div>
-        <div class="text-[16px] px-[25px] px-[10px] inline">
-          <%= link_to  comment_path, data: { turbo_frame: 'modal'  } do %>
-            <i class="fas fa-comment-alt"></i>
-          <% end %>
-        </div> <%= comment_count %>
-      </div>
-    <% end %>
-    <div class="card-actions justify-end">
-      <% comment_links(@comment).each do |links| %>
-        <%= links %>
-      <% end %>
-
-    </div>
-    </div>
-  </div>
-</div>
+<%= render CommentDetailsComponent.new comment: @comment, current_user: @current_user %>
 <% if @comment.replies.present? %>
   <div class="ml-7">
-    <% @comment.replies.each do |comment| %>
-      <div class="card bg-base-300 w-max-[600px] mx-auto shadow-xl p-3 my-4">
-        <div class="card-body">
-          <h2 class="card-title"> <%= comment.user.email %> </h2>
-          <p><%= comment.body %></p>
-          <div class="card-actions justify-end">
-          <div class="card-actions justify-end">
-            <% comment_links(comment).each do |links| %>
-              <%= links %>
-            <% end %>
-          </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <%= render CommentDetailsComponent.with_collection @comment.replies, current_user: @current_user, repliable: false %>
   </div>
 <% end %>
 

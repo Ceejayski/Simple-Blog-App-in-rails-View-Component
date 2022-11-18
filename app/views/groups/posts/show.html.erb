@@ -11,9 +11,8 @@
     </div>
     <div>
 
-      <p class="font-semiboldmt-5">
-        Updated about <%= time_tag(@post.updated_at, 'data-local': 'time-ago') %>
-      </p>
+      <%= render TimeTagComponent.new time: @post.updated_at %>
+
       <%= render CommentButtonComponent.new record: @post, current_user: current_user %>
     </div>
     <%= render CommentComponent.with_collection @post.direct_comments, current_user: current_user %>

@@ -23,7 +23,7 @@
 class Post < ApplicationRecord
   # Validations
 
-  validates :title, presence: true, length: { maximum: 50 }, uniqueness: true
+  validates :title, presence: true, length: { maximum: 50 }, uniqueness: { scope: :group_id }
   validates :description, presence: true
 
   # Associations

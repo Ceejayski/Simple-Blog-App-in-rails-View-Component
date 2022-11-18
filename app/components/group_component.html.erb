@@ -7,7 +7,8 @@
         <div class="flex mt-3">
         <p class="text-base font-medium mr-3"> <%= pluralize(@group.members.size, 'Member')  %> </p>
         <p class="text-base font-medium mr-3"> <%= pluralize(@group.posts.size, 'Post')  %> </p>
-        <p class="text-base font-medium mr-3"> Last Updated on <%= time_tag @group.updated_at, 'data-local': 'time-ago' %> </p>
+        <%= render TimeTagComponent.new time: @group.updated_at %>
+
         </div>
       </div>
 

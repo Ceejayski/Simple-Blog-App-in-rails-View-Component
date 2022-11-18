@@ -1,0 +1,24 @@
+<div class="card bg-base-300 w-max-[600px] mx-auto shadow-xl p-3 my-4">
+  <div class="card-body">
+    <h2 class="card-title"> <%= @comment.user.email %> </h2>
+    <p><%= @comment.body %></p>
+    <%= render TimeTagComponent.new time: @comment.updated_at, text: '' %>
+    <div class="card-actions flex">
+     <% if @repliable %>
+      <div class="mr-2">
+        <%= comment_count %>
+        <div class="inline">
+          <%= link_to  comment_path, data: { turbo_frame: 'modal'  } do %>
+            <i class="fas fa-comment-alt"></i>
+          <% end %>
+        </div>
+      </div>
+     <% end %>
+
+      <% comment_links(@comment).each do |links| %>
+        <%= links %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
