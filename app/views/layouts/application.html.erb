@@ -13,7 +13,7 @@
 
   <body>
     <%= turbo_frame_tag "modal" %>
-    <%= turbo_stream.prepend "flash", partial: "layouts/flash" %>
+    <%# <%= turbo_stream.prepend "flash", partial: "layouts/flash" %>
     <%= render NavbarComponent.new user: current_user %>
     <%= turbo_stream_from "flash" %>
     <%= render 'layouts/flash' %>
