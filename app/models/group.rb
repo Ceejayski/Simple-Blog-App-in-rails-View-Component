@@ -22,9 +22,10 @@ class Group < ApplicationRecord
 
   # Associations
   belongs_to :creator, class_name: 'User'
-  has_many :posts, dependent: :delete_all
+  has_many :posts, dependent: :destroy
   has_and_belongs_to_many :members, join_table: 'groups_members', association_foreign_key: 'member_id',
-                                    class_name: 'User'
+                                    class_name: 'User', dependent: :destroy
+
 
   # scopes
 

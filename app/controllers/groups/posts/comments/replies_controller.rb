@@ -3,14 +3,12 @@ class Groups::Posts::Comments::RepliesController < ApplicationController
 
   def new
     @replies = @replies.build
-    # authorize @reply
   end
 
   def create
     @reply = @replies.build(body: params[:body])
     @reply.user = current_user
     @reply.post = @post
-    # authorize @reply
     respond_to do |format|
       if @reply.save
         format.html { redirect_to group_post_path(@group, @post), notice: 'Reply was successfully created.' }

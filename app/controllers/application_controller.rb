@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path, notice: 'You are not authorized to perform this action.') }
+      format.turbo_stream { turbo_stream.replace "flash", partial: "layouts/flash" }
+    end
   end
 end

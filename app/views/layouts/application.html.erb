@@ -13,15 +13,10 @@
 
   <body>
     <%= turbo_frame_tag "modal" %>
-
+    <%= turbo_stream.prepend "flash", partial: "layouts/flash" %>
     <%= render NavbarComponent.new user: current_user %>
-    <div class="fixed inset-0 px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
-      <div class="flex flex-col items-end justify-center">
-        <% flash.each do |type, data| %>
-          <%= render NotificationComponent.new(type: type, data: data) %>
-        <% end %>
-      </div>
-    </div>
+    <%= turbo_stream_from "flash" %>
+    <%= render 'layouts/flash' %>
     <main class="container mx-auto mt-28 px-5">
       <%= yield %>
     </main>

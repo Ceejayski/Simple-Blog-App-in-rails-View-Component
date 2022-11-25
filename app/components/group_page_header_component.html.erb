@@ -4,6 +4,12 @@
     <% edit_group_link.each do |link| %>
       <%= link %>
     <% end %>
+    <div class="daisy-dropdown daisy-dropdown-bottom daisy-dropdown-end">
+      <label tabindex="0" class="daisy-btn daisy-m-1">Members</label>
+      <ul tabindex="0" class="daisy-dropdown-content daisy-menu p-2 shadow bg-base-100 rounded-box w-52">
+        <%= render GroupMemberComponent.with_collection @group.members, group: @group, current_user: @current_user %>
+      </ul>
+    </div>
   </div>
 </div>
 <hr/>
