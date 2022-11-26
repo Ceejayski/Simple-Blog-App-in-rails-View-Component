@@ -4,6 +4,6 @@ class MemberPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user != record.creator && record.members.exists?(user.id)
+    user != record.creator && record.members.exists?(user.id) || user == record.creator
   end
 end
