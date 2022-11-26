@@ -50,7 +50,7 @@ class Groups::Posts::CommentsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group_posts = @group.posts
     @post = @group_posts.find(params[:post_id])
-    @comments = @post.comments
+    @comments = @post.comments.includes(:user, :post, :replies)
   end
 
   def comment_params

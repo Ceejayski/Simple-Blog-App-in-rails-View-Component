@@ -6,12 +6,12 @@ class GroupsController < ApplicationController
     @queries_details = [{ query: 'all', label: 'All Groups' }, { query: 'membership', label: 'My Groups' },
                         { query: 'created_groups', label: 'Groups I Created' }]
 
-    @groups = Group.build_query(query: @query, user: current_user)
+    @groups = Group.includes(:creator).build_query(query: @query, user: current_user)
   end
 
   def show
     authorize @group
-    @posts = @group.posts.most_recent
+    @posts = @group.posts.includes(:group, :author).most_recent
   end
 
   def new

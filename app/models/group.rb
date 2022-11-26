@@ -35,11 +35,11 @@ class Group < ApplicationRecord
     res = nil
     case query
     when 'all'
-      res = Group.all
+      res = Group.includes(:creator).all
     when 'membership'
-      res = user.groups
+      res = user.groups.includes(:creator)
     when 'created_groups'
-      res = user.created_groups
+      res = user.created_groups.includes(:creator)
     else
       return []
     end

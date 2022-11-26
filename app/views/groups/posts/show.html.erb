@@ -15,7 +15,7 @@
 
       <%= render CommentButtonComponent.new record: @post, current_user: current_user %>
     </div>
-    <%= render CommentComponent.with_collection @post.direct_comments, current_user: current_user %>
+    <%= render CommentComponent.with_collection @post.direct_comments.includes(:user, :post, :replies), current_user: current_user %>
   <% end %>
 <% end %>
 
